@@ -60,10 +60,10 @@ public class CompaniesPage extends BasePage {
 
     public void nowHiring(){
         WebElement nowHiring = new WebDriverWait(driver, Duration.ofSeconds(10))
-        .until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Now Hiring']")));
+        .until(ExpectedConditions.elementToBeClickable(Locators.NOW_HIRING));
         nowHiring.click();
         WebElement waitUntilLoaded = new WebDriverWait(driver, Duration.ofSeconds(10))
-        .until(ExpectedConditions.elementToBeClickable(By.id("type_id")));
+        .until(ExpectedConditions.elementToBeClickable(Locators.TYPE_ID));
     }
 
     public void selectNumberOfEmployees(String count){
@@ -71,15 +71,15 @@ public class CompaniesPage extends BasePage {
         .until(ExpectedConditions.elementToBeClickable((Locators.SELECT_NUMBER_OF_EMPLOYEES)));
 
         WebElement labelElement = numberOfEmployees.findElement(By.xpath("//label[contains(text(),'"+count+"')]"));
-        WebElement checkbox = labelElement.findElement(By.tagName("input"));
+        WebElement checkbox = labelElement.findElement(Locators.CHECKBOX);
         checkbox.click();
     }
 
     public boolean checkNumberOfEmpoyees(String count){
         WebElement companyListings = new WebDriverWait(driver, Duration.ofSeconds(10))
-        .until(ExpectedConditions.elementToBeClickable(By.id("w0")));
+        .until(ExpectedConditions.elementToBeClickable(Locators.COMPANY_LISTINGS));
 
-        List<WebElement> companies = companyListings.findElements(By.cssSelector(".company-action.company_inner_right"));
+        List<WebElement> companies = companyListings.findElements(Locators.COMPANIES);
         
         //clicks on first company
         companies.get(0).click();

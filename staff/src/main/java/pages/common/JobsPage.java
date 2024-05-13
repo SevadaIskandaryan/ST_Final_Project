@@ -66,7 +66,7 @@ public class JobsPage extends BasePage {
 
     public void enableSortByDeadline(){
         WebElement dropdownElement = new WebDriverWait(driver, Duration.ofSeconds(10))
-        .until(ExpectedConditions.elementToBeClickable(By.id("select_sort")));
+        .until(ExpectedConditions.elementToBeClickable(Locators.SORT_DEADLINE));
         Select dropdown = new Select(dropdownElement);
         dropdown.selectByVisibleText("Sort by deadline");
     }
@@ -95,9 +95,9 @@ public class JobsPage extends BasePage {
 
     public boolean checkSortingByDeadline(){
         WebElement jobListings = new WebDriverWait(driver, Duration.ofSeconds(10))
-        .until(ExpectedConditions.elementToBeClickable(By.id("w0")));
+        .until(ExpectedConditions.elementToBeClickable(Locators.JOB_LISTINGS));
 
-        List<WebElement> deadlineElements = jobListings.findElements(By.className("formatted_date"));
+        List<WebElement> deadlineElements = jobListings.findElements(Locators.DEADLINE_ITEMS);
 
         List<String> deadlines = new ArrayList<>();
         for (WebElement element : deadlineElements) {
@@ -115,11 +115,10 @@ public class JobsPage extends BasePage {
 
         WebElement labelElement = categories.findElement(By.xpath("//en[normalize-space()='" + category + "']"));
         
-        WebElement parent = labelElement.findElement(By.xpath("./.."));
+        WebElement parent = labelElement.findElement(Locators.PARENT_ELEMENT);
 
         // Find the input element within the label
-        WebElement checkbox = parent.findElement(By.tagName("input"));
-        //WebElement checkbox = categories.findElement(By.name(category));
+        WebElement checkbox = parent.findElement(Locators.CHECKBOX);
         boolean isSelected = checkbox.isSelected();
         return isSelected;
     }
@@ -130,11 +129,10 @@ public class JobsPage extends BasePage {
 
         WebElement labelElement = cities.findElement(By.xpath("//label[contains(text(),'"+city+"')]"));
         
-        WebElement parent = labelElement.findElement(By.xpath("./.."));
+        WebElement parent = labelElement.findElement(Locators.PARENT_ELEMENT);
 
         // Find the input element within the label
-        WebElement checkbox = parent.findElement(By.tagName("input"));
-        //WebElement checkbox = categories.findElement(By.name(category));
+        WebElement checkbox = parent.findElement(Locators.CHECKBOX);
         boolean isSelected = checkbox.isSelected();
         return isSelected;
     }
