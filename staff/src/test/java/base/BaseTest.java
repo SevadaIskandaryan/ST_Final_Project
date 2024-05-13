@@ -30,18 +30,22 @@ public class BaseTest {
     @SuppressWarnings("deprecation")
     @BeforeClass
     public void setUp() {
-        // Set up WebDriver
-        //firefoxOptions = new FirefoxOptions();
-        // try {
-        //     driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
-        // } catch (MalformedURLException e) {
-        //     // TODO Auto-generated catch block
-        //     e.printStackTrace();
-        // }
+        boolean remoteWebDriverEnable = false;
 
-
-        System.setProperty("webdriver.chrome.driver", "src/chromedriver.exe");
-        driver = new ChromeDriver();
+        if(remoteWebDriverEnable){
+            // Set up WebDriver
+            firefoxOptions = new FirefoxOptions();
+            try {
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }else{
+            System.setProperty("webdriver.chrome.driver", "src/chromedriver.exe");
+            driver = new ChromeDriver();
+        }
+        
         moveToHomePage();
     }
 
