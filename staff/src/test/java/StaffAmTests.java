@@ -16,8 +16,10 @@ public class StaffAmTests extends BaseTest {
     // searches for job and enables sort by deadline functionality and check if it is ascending order
     @Test
     public void testJobSearchDeadlineSort() {
+        String jobTitle = "Software Developer";
+
         HomePage homePage = new HomePage(driver);
-        homePage.searchForJob("Software Developer");
+        homePage.searchForJob(jobTitle);
 
         JobsPage searchResultPage = new JobsPage(driver);
         searchResultPage.checkIfActive();
@@ -30,16 +32,20 @@ public class StaffAmTests extends BaseTest {
     // searches for job with category and city filter 
     @Test
     public void testJobSearchCategoryAndCity() {
+        String jobTitle = "Software Developer";
+        String category = "Software development";
+        String city = "Yerevan";
+
         HomePage homePage = new HomePage(driver);
-        homePage.inputKeyword("Software Developer");
-        homePage.selectCategory("Software development");
-        homePage.selectCity("Yerevan");
+        homePage.inputKeyword(jobTitle);
+        homePage.selectCategory(category);
+        homePage.selectCity(city);
         homePage.clickSearchButton();
 
         JobsPage searchResultPage = new JobsPage(driver);
         searchResultPage.checkIfActive();
-        boolean condition1 = searchResultPage.isCategorySelected("Software development");
-        boolean condition2 = searchResultPage.isCitySelected("Yerevan");
+        boolean condition1 = searchResultPage.isCategorySelected(category);
+        boolean condition2 = searchResultPage.isCitySelected(city);
         assertTrue(AssertionMessages.CATEGORY_CITY, condition1&&condition2);
     }
 
@@ -61,13 +67,16 @@ public class StaffAmTests extends BaseTest {
     // In Companies page clicks "Now Hiring" and filters with number of employees and checks it
     @Test
     public void testCompaniesFilterByNumberOfEmployees() {
+        String numberOfEmployees = "more than 10000";
+
+
         driver.get(URLS.COMPANIES_URL);
         CompaniesPage companiesPage = new CompaniesPage(driver);
 
         companiesPage.checkIfActive();
         companiesPage.nowHiring();
-        companiesPage.selectNumberOfEmployees("more than 10000");
-        boolean condition = companiesPage.checkNumberOfEmpoyees("more than 10000");
+        companiesPage.selectNumberOfEmployees(numberOfEmployees);
+        boolean condition = companiesPage.checkNumberOfEmpoyees(numberOfEmployees);
 
         assertTrue(AssertionMessages.COMPANY_EMPLOYEE_NUMBER, condition);
     }
