@@ -136,6 +136,20 @@ public class StaffAmTests extends BaseTest {
     }
 
 
+    // In Companies page clicks "Now Hiring" and checks it
+    @Test
+    public void testCompaniesNowHiring() {
+        driver.get(URLS.COMPANIES_URL);
+        CompaniesPage companiesPage = new CompaniesPage(driver);
+
+        companiesPage.checkIfActive();
+        companiesPage.nowHiring();
+        boolean condition = companiesPage.isEnabledNowHiring();
+
+        assertTrue(AssertionMessages.COMPANY_NOW_HIRING, condition);
+    }
+
+
 
 
     // HW3.2 tests IGNORE

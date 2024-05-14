@@ -8,4 +8,5 @@ public class AssertionMessages {
     public static final String CATEGORY = "Job search done with category";
     public static final String COMPANY_FOLLOWERS_SORT = "Companies are sorted by followers";
     public static final String COMPANY_EMPLOYEE_NUMBER = "Companies are filtered by number of employees";
+    public static final String COMPANY_NOW_HIRING = "Companies are filtered by Now Hiring";
 }

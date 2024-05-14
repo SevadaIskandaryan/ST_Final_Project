@@ -66,6 +66,18 @@ public class CompaniesPage extends BasePage {
         .until(ExpectedConditions.elementToBeClickable(Locators.TYPE_ID));
     }
 
+    public boolean isEnabledNowHiring(){
+        WebElement nowHiring = new WebDriverWait(driver, Duration.ofSeconds(10))
+        .until(ExpectedConditions.elementToBeClickable(Locators.NOW_HIRING));
+        String className = nowHiring.getAttribute("class");
+
+        if (className.contains("active")) {
+            return true;
+        }
+
+        return false;
+    }
+
     public void selectNumberOfEmployees(String count){
         WebElement numberOfEmployees = new WebDriverWait(driver, Duration.ofSeconds(10))
         .until(ExpectedConditions.elementToBeClickable((Locators.SELECT_NUMBER_OF_EMPLOYEES)));
