@@ -1,5 +1,7 @@
 import static org.junit.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -160,6 +162,7 @@ public class StaffAmTests extends BaseTest {
 
         companiesPage.checkIfActive();
         companiesPage.selectNumberOfEmployees(numberOfEmployees);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         boolean condition = companiesPage.isSelectNumberOfEmployees(numberOfEmployees);
 
         assertTrue(AssertionMessages.COMPANY_EMPLOYEE_NUMBER_CHECKBOX, condition);
