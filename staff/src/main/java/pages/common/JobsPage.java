@@ -136,4 +136,24 @@ public class JobsPage extends BasePage {
         boolean isSelected = checkbox.isSelected();
         return isSelected;
     }
+
+
+    public boolean isCityInResults(String city){
+        WebElement jobListings = new WebDriverWait(driver, Duration.ofSeconds(10))
+        .until(ExpectedConditions.elementToBeClickable(Locators.JOB_LISTINGS));
+
+        List<WebElement> locationElements = jobListings.findElements(Locators.CITY_LOCATION);
+        List<String> cities = new ArrayList<>();
+        for (WebElement element : locationElements) {
+            cities.add(element.getText());
+        }
+
+        for (int i = 0; i < cities.size(); i++) {
+            if (!cities.get(i).contains(city)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

@@ -18,6 +18,7 @@ public class Locators {
     public static final By JOB_LISTINGS = By.id("w0");
     public static final By DEADLINE_ITEMS = By.className("formatted_date");
     public static final By PARENT_ELEMENT = By.xpath("./..");
+    public static final By CITY_LOCATION = By.className("job_location");
 
 
     // IGNORE BELOW

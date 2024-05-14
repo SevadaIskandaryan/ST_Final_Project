@@ -49,6 +49,60 @@ public class StaffAmTests extends BaseTest {
         assertTrue(AssertionMessages.CATEGORY_CITY, condition1&&condition2);
     }
 
+    // searches for job with category filter 
+    @Test
+    public void testJobSearchCategory() {
+        String jobTitle = "Software Developer";
+        String category = "Software development";
+
+        HomePage homePage = new HomePage(driver);
+        homePage.inputKeyword(jobTitle);
+        homePage.selectCategory(category);
+        homePage.clickSearchButton();
+
+        JobsPage searchResultPage = new JobsPage(driver);
+        searchResultPage.checkIfActive();
+        boolean condition = searchResultPage.isCategorySelected(category);
+
+        assertTrue(AssertionMessages.CATEGORY, condition);
+    }
+
+    // searches for job with city filter 
+    @Test
+    public void testJobSearchCity() {
+        String jobTitle = "Software Developer";
+        String city = "Yerevan";
+
+        HomePage homePage = new HomePage(driver);
+        homePage.inputKeyword(jobTitle);
+        homePage.selectCity(city);
+        homePage.clickSearchButton();
+
+        JobsPage searchResultPage = new JobsPage(driver);
+        searchResultPage.checkIfActive();
+        boolean condition = searchResultPage.isCitySelected(city);
+
+        assertTrue(AssertionMessages.CITY, condition);
+    }
+
+    // searches a job with city filter and checks if city is selected in job listings
+    @Test
+    public void testJobSearchCityResults() {
+        String jobTitle = "Software Developer";
+        String city = "Yerevan";
+
+        HomePage homePage = new HomePage(driver);
+        homePage.inputKeyword(jobTitle);
+        homePage.selectCity(city);
+        homePage.clickSearchButton();
+
+        JobsPage searchResultPage = new JobsPage(driver);
+        searchResultPage.checkIfActive();
+        boolean condition = searchResultPage.isCityInResults(city);
+
+        assertTrue(AssertionMessages.CITY_RESULTS, condition);
+    }
+
 
     // In Companies page sorts it by followers and checks if it is sorted descending
     @Test
