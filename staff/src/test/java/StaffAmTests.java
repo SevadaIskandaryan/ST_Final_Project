@@ -149,7 +149,21 @@ public class StaffAmTests extends BaseTest {
         assertTrue(AssertionMessages.COMPANY_NOW_HIRING, condition);
     }
 
+    // In Companies page filters with number of employees and checks if checkbox is selected
+    @Test
+    public void testCompaniesCheckboxFilterByNumberOfEmployees() {
+        String numberOfEmployees = "more than 10000";
 
+
+        driver.get(URLS.COMPANIES_URL);
+        CompaniesPage companiesPage = new CompaniesPage(driver);
+
+        companiesPage.checkIfActive();
+        companiesPage.selectNumberOfEmployees(numberOfEmployees);
+        boolean condition = companiesPage.isSelectNumberOfEmployees(numberOfEmployees);
+
+        assertTrue(AssertionMessages.COMPANY_EMPLOYEE_NUMBER_CHECKBOX, condition);
+    }
 
 
     // HW3.2 tests IGNORE

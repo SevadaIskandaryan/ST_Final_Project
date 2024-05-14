@@ -87,6 +87,17 @@ public class CompaniesPage extends BasePage {
         checkbox.click();
     }
 
+    public boolean isSelectNumberOfEmployees(String count){
+        WebElement numberOfEmployees = new WebDriverWait(driver, Duration.ofSeconds(10))
+        .until(ExpectedConditions.elementToBeClickable((Locators.SELECT_NUMBER_OF_EMPLOYEES)));
+
+        WebElement labelElement = numberOfEmployees.findElement(By.xpath("//label[contains(text(),'"+count+"')]"));
+        WebElement checkbox = labelElement.findElement(Locators.CHECKBOX);
+        boolean isSelected = checkbox.isSelected();
+
+        return isSelected;
+    }
+
     public boolean checkNumberOfEmpoyees(String count){
         WebElement companyListings = new WebDriverWait(driver, Duration.ofSeconds(10))
         .until(ExpectedConditions.elementToBeClickable(Locators.COMPANY_LISTINGS));
